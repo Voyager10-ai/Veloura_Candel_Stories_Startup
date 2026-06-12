@@ -224,6 +224,10 @@
     display: none;
   }
 
+  .navbar__cart-btn--desktop {
+    display: none;
+  }
+
   .navbar__nav {
     position: fixed;
     top: 0;

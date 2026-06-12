@@ -722,3 +722,48 @@
     filter: drop-shadow(0 0 12px rgba(201, 168, 106, 0.5));
   }
 }
+
+/* Mobile Responsiveness for Drawer */
+@media (max-width: 480px) {
+  .cart-drawer__header {
+    padding: var(--space-4) var(--space-4) var(--space-3);
+  }
+  
+  .cart-drawer__items {
+    padding: var(--space-4);
+    gap: var(--space-4);
+  }
+  
+  .cart-drawer__item {
+    padding: var(--space-3);
+    gap: var(--space-3);
+  }
+  
+  .cart-drawer__item-img-wrapper {
+    width: 68px;
+    height: 68px;
+  }
+  
+  .cart-drawer__item-img {
+    max-width: 58px;
+    max-height: 58px;
+  }
+  
+  .cart-drawer__footer {
+    padding: var(--space-4);
+  }
+  
+  .cart-drawer__form-scroll {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+  
+  .cart-drawer__methods-scroll {
+    padding: var(--space-4);
+    gap: var(--space-3);
+  }
+  
+  .cart-drawer__success {
+    padding: var(--space-6);
+  }
+}
