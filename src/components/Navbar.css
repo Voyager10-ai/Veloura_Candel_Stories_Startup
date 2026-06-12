@@ -30,9 +30,9 @@
 
 
 .navbar__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
 }
 
 /* Logo */
@@ -41,6 +41,7 @@
   align-items: center;
   gap: var(--space-2);
   z-index: 1001;
+  justify-self: start;
 }
 
 .navbar__logo-flame {
@@ -69,6 +70,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  justify-self: center;
 }
 
 .navbar__link-wrap {
@@ -120,6 +122,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-5);
+  justify-self: end;
 }
 
 .navbar__cart-btn {
@@ -211,6 +214,11 @@
 
 /* Mobile */
 @media (max-width: 768px) {
+  .navbar__inner {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .navbar__mobile-triggers {
     display: flex;
     align-items: center;

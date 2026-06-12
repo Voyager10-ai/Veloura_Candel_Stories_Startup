@@ -73,7 +73,6 @@ const Navbar = ({ onCartClick, cartCount }: NavbarProps) => {
   const navLinks = [
     { label: 'Home', href: '#home' },
     { label: 'Shop', href: '#shop' },
-    { label: 'Process', href: '#process' },
     { label: 'Stories', href: '#stories' },
     { label: 'Contact', href: '#contact' },
   ];
