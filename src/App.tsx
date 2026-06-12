@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Navbar from './components/Navbar';
+import AnnouncementBar from './components/AnnouncementBar';
 import HeroSection from './components/HeroSection';
 import ProductShowcase from './components/ProductShowcase';
 import ShopSection from './components/ShopSection';
@@ -62,6 +63,7 @@ function App() {
     <>
       <CursorEffects />
       <ParticleBackground />
+      <AnnouncementBar />
       <Navbar onCartClick={() => setCartOpen(true)} cartCount={cartCount} />
       <main>
         <HeroSection />

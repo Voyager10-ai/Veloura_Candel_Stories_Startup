@@ -1,0 +1,66 @@
+.announcement-bar {
+  height: 36px;
+  background-color: #121212; /* Deep Charcoal */
+  border-bottom: 1.5px solid rgba(201, 168, 106, 0.15); /* Elegant gold bottom border */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  z-index: 1001; /* Above navbar when navbar is not scrolled */
+}
+
+.announcement-bar__ticker {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.announcement-bar__track {
+  display: flex;
+  white-space: nowrap;
+  animation: announcementMarquee 22s linear infinite;
+}
+
+.announcement-bar__item {
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-2);
+}
+
+.announcement-bar__text {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-deep-bluish); /* Warm Ivory */
+  opacity: 0.95;
+}
+
+.announcement-bar__text strong {
+  color: var(--color-moderate-green); /* Gold Highlight */
+  font-weight: 600;
+}
+
+.announcement-bar__dot {
+  color: var(--color-moderate-green); /* Gold Dot */
+  font-size: var(--text-base);
+  margin-left: var(--space-6);
+  font-weight: 700;
+}
+
+/* Loop animations shifting by exactly 1/3 of the track width */
+@keyframes announcementMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.3333%);
+  }
+}
+
+/* Pause scroll when user hovers for accessibility */
+.announcement-bar:hover .announcement-bar__track {
+  animation-play-state: paused;
+}
