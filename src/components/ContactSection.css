@@ -1,0 +1,178 @@
+.contact {
+  padding: var(--space-24) 0 var(--space-12);
+  background: var(--color-deep-bluish);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(237, 235, 222, 0.08), transparent);
+}
+
+.contact__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Big Watermark Title */
+.contact__bg-title {
+  font-family: var(--font-sans);
+  font-size: 7.2rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: rgba(201, 168, 106, 0.25);
+  -webkit-text-stroke: 1px rgba(201, 168, 106, 0.15);
+  line-height: 1;
+  margin-bottom: var(--space-4);
+  text-align: center;
+  user-select: none;
+  width: 100%;
+  transition: color 0.6s ease, text-shadow 0.6s ease, -webkit-text-stroke 0.6s ease;
+  display: block;
+  cursor: default;
+}
+
+.contact__bg-title:hover {
+  color: #C9A86A;
+  -webkit-text-stroke: 1px #C9A86A;
+  animation: textGlowPulse 2s infinite ease-in-out;
+}
+
+@keyframes textGlowPulse {
+  0%, 100% {
+    text-shadow: 0 0 15px rgba(201, 168, 106, 0.7), 0 0 30px rgba(217, 142, 50, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 25px rgba(201, 168, 106, 0.95), 0 0 50px rgba(217, 142, 50, 0.7), 0 0 80px rgba(201, 168, 106, 0.5);
+  }
+}
+
+.contact__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 580px;
+  position: relative;
+  z-index: 2;
+}
+
+.contact__form {
+  width: 100%;
+}
+
+.contact__form-inner {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  background: rgba(18, 18, 18, 0.05);
+  border: 1px solid rgba(18, 18, 18, 0.15);
+  border-radius: var(--radius-full);
+  padding: var(--space-2) var(--space-3);
+  width: 100%;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base);
+}
+
+.contact__form-inner:focus-within {
+  border-color: var(--color-moderate-green);
+  box-shadow: 0 0 15px rgba(201, 168, 106, 0.1);
+}
+
+.contact__input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: var(--space-2) var(--space-3);
+  color: var(--color-light-cream);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+}
+
+.contact__input::placeholder {
+  color: rgba(18, 18, 18, 0.45);
+}
+
+.contact__submit-btn {
+  padding: var(--space-3) var(--space-8);
+  background: var(--color-moderate-green);
+  color: var(--color-light-cream);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  border: none;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(201, 168, 106, 0.2);
+}
+
+.contact__submit-btn:hover {
+  background: var(--color-light-cream);
+  color: var(--color-deep-bluish);
+  box-shadow: 0 6px 20px rgba(237, 235, 222, 0.15);
+}
+
+.contact__submit-btn:active {
+  transform: scale(0.97);
+}
+
+.contact__subtext {
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  color: var(--color-light-cream);
+  opacity: 0.7;
+  margin-top: var(--space-4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact {
+    padding: var(--space-16) 0 var(--space-8);
+  }
+
+  .contact__bg-title {
+    font-size: 10vw;
+  }
+
+  .contact__form-inner {
+    flex-direction: column;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  .contact__input {
+    width: 100%;
+    background: rgba(18, 18, 18, 0.05);
+    border: 1px solid rgba(18, 18, 18, 0.15);
+    border-radius: var(--radius-full);
+    padding: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-3);
+    text-align: center;
+  }
+  
+  .contact__input:focus {
+    border-color: var(--color-moderate-green);
+  }
+
+  .contact__submit-btn {
+    width: 100%;
+    padding: var(--space-3);
+    text-align: center;
+  }
+}

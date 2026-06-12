@@ -1,0 +1,102 @@
+/* ============================
+   VELOURA — Trust Section Styles
+   ============================ */
+
+.trust {
+  padding: var(--space-16) 0;
+  background-color: var(--color-light-cream, #121212);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.trust__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.trust__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-8);
+}
+
+.trust__card {
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid rgba(201, 168, 106, 0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.trust__card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(201, 168, 106, 0.25);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4), 
+              0 0 20px rgba(201, 168, 106, 0.05);
+}
+
+.trust__stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+  width: 100%;
+}
+
+.trust__symbol {
+  font-size: var(--text-2xl);
+  opacity: 0.85;
+}
+
+.trust__value-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.trust__value {
+  font-size: var(--text-5xl);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  color: var(--color-deep-bluish, #F8F4EE);
+}
+
+.trust__suffix {
+  font-size: var(--text-3xl);
+  font-weight: 600;
+  color: var(--color-moderate-green, #C9A86A);
+  margin-left: 2px;
+}
+
+.trust__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  color: var(--color-deep-bluish, #F8F4EE);
+  font-weight: 500;
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.01em;
+}
+
+.trust__desc {
+  font-size: var(--text-sm);
+  color: rgba(248, 244, 238, 0.65);
+  line-height: 1.6;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .trust__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  
+  .trust {
+    padding: var(--space-12) 0;
+  }
+}

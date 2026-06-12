@@ -1,0 +1,91 @@
+.logoloop-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
+}
+
+.logoloop-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  user-select: none;
+}
+
+.logoloop-list {
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.logoloop-item {
+  flex: 0 0 auto;
+  margin-right: var(--logoloop-gap, 32px);
+  font-size: var(--logoloop-logoHeight, 40px);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.logoloop-item-content {
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s ease-[cubic-bezier(0.4,0,0.2,1)];
+  will-change: transform;
+}
+
+.logoloop-item-content.scale {
+  transform: scale(1.25);
+}
+
+.logoloop-item-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: opacity 0.2s linear;
+}
+
+.logoloop-item-link:hover {
+  opacity: 0.8;
+}
+
+.logoloop-item-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* Fade out overlays - uses custom gold/cream or background colors */
+.logoloop-fade-left {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  width: clamp(24px, 12%, 140px);
+  background: linear-gradient(
+    to right,
+    var(--logoloop-fadeColor, var(--color-deep-bluish)) 0%,
+    transparent 100%
+  );
+}
+
+.logoloop-fade-right {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 10;
+  width: clamp(24px, 12%, 140px);
+  background: linear-gradient(
+    to left,
+    var(--logoloop-fadeColor, var(--color-deep-bluish)) 0%,
+    transparent 100%
+  );
+}
