@@ -2,80 +2,123 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import ConfettiButton from './ConfettiButton';
-import candleAmber from '../assets/images/candle-amber.png';
-import candleSage from '../assets/images/candle-sage.png';
-import candleRose from '../assets/images/candle-rose.png';
+import catPremium from '../assets/images/cat-premium.png';
+import catTaper from '../assets/images/cat-taper.png';
+import catDecorative from '../assets/images/cat-decorative.png';
+import catDessert from '../assets/images/cat-dessert.png';
+import catWaxMelts from '../assets/images/cat-waxmelts.png';
+import catColour from '../assets/images/cat-colour.png';
 import './ProductShowcase.css';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export interface Product {
+export interface CategoryItem {
   id: number;
   name: string;
-  category: string;
-  scent: string;
+  badge: string;
+  tagline: string;
   description: string;
-  price: number;
+  priceText: string;
   image: string;
   color: string;
   tags: string[];
 }
 
-export const products: Product[] = [
+export const categories: CategoryItem[] = [
   {
     id: 1,
-    name: 'Amber & Oud',
-    category: 'Woody & Warm',
-    scent: 'Sandalwood · Vanilla · Bergamot',
-    description: 'A warm, enveloping fragrance that wraps your space in cozy sophistication.',
-    price: 1299,
-    image: candleAmber,
-    color: '#D98E32', // Soft Amber
-    tags: ['100% Soy Wax', 'Cozy Vibe', '60 Hour Burn', 'Lead-Free Wick'],
+    name: 'Premium Candles',
+    badge: 'Luxury Collection',
+    tagline: 'Sunflower & Gold-foiled Blends',
+    description: 'Exquisite, hand-poured luxury soy candles with premium fragrance oils, designed to make a statement in any space.',
+    priceText: 'Starting from ₹599',
+    image: catPremium,
+    color: '#D98E32', // Amber
+    tags: ['100% Soy Wax', 'Gold Foil Decor', 'Extra Long Burn', 'Premium Oils'],
   },
   {
     id: 2,
-    name: 'Sage & Sea',
-    category: 'Fresh & Coastal',
-    scent: 'Eucalyptus · Moss · Sea Salt',
-    description: 'Fresh coastal air meets earthy botanicals for a grounding experience.',
-    price: 1299,
-    image: candleSage,
-    color: '#C9A86A', // Antique Gold
-    tags: ['Hand-Poured', 'Fresh Blend', 'Vegan', 'Aromatic'],
+    name: 'Taper Candles',
+    badge: 'Earthy Collection',
+    tagline: 'Spiraled & Textured Elegance',
+    description: 'Elegant spiraled taper candles in organic tones. Perfect for dining settings and ambient visual aesthetics.',
+    priceText: 'Starting from ₹299',
+    image: catTaper,
+    color: '#C9A86A', // Gold
+    tags: ['Spiraled Design', 'Dripless Wax', 'Clean Burning', 'Cozy Warmth'],
   },
   {
     id: 3,
-    name: 'Rose & Blush',
-    category: 'Floral & Romantic',
-    scent: 'Peony · Rose Water · Amber',
-    description: 'Delicate floral notes dance with soft warmth to create romantic ambiance.',
-    price: 1299,
-    image: candleRose,
-    color: '#E8D3A9', // Champagne Gold
-    tags: ['Delicate Scent', 'Therapeutic', 'Natural Oils', 'Blissful'],
+    name: 'Decorative Candles',
+    badge: 'Artistic Decor',
+    tagline: 'Aesthetic Bubble & Geometric Shapes',
+    description: 'Charming geometric and bubble candles in pastel tones, crafted to serve as beautiful focal points in your home.',
+    priceText: 'Starting from ₹399',
+    image: catDecorative,
+    color: '#E8D3A9', // Blush / Champagne Gold
+    tags: ['Modern Shapes', 'Hand-molded', 'Aesthetic Home', 'Vibrant Vibe'],
+  },
+  {
+    id: 4,
+    name: 'Dessert Candles',
+    badge: 'Gourmet Treats',
+    tagline: 'Strawberry Bowl & Sweet Delights',
+    description: 'Ultra-realistic dessert candles crafted with whipped wax cream and delicious fruit wax details. Smells as sweet as it looks!',
+    priceText: 'Starting from ₹499',
+    image: catDessert,
+    color: '#D98E32', // Amber
+    tags: ['Whipped Wax', 'Gourmet Aromas', 'Realistic Details', 'Artisanal Design'],
+  },
+  {
+    id: 5,
+    name: 'Wax Melts & Sachets',
+    badge: 'Home Fragrance',
+    tagline: 'Aromatic Waffles & Botanical Sachets',
+    description: 'Flameless home fragrance options featuring waffle-shaped wax melts and decorative botanically-infused soy wax sachets.',
+    priceText: 'Starting from ₹199',
+    image: catWaxMelts,
+    color: '#C9A86A', // Gold
+    tags: ['Flameless Scent', 'Botanical Sachets', 'High Scent Throw', 'Natural Herbs'],
+  },
+  {
+    id: 6,
+    name: 'Colour Candles',
+    badge: 'Vibrant Light',
+    tagline: 'Rich Pillar & Colorful Accents',
+    description: 'Vibrant, hand-poured pillar candles in rich color tones, designed to bring warmth and energy to your space.',
+    priceText: 'Starting from ₹249',
+    image: catColour,
+    color: '#E8D3A9', // Blush
+    tags: ['Pillar Candles', 'Rich Crimson Red', 'Vibrant Color', 'Multi-Height Pack'],
   },
 ];
 
 interface ProductShowcaseProps {
-  onAddToCart: (product: Product) => void;
+  onAddToCart?: (product: any) => void;
 }
 
-const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
+const ProductShowcase = (_props: ProductShowcaseProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLImageElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
 
-  const activeProduct = products[activeIndex];
+  const activeCategory = categories[activeIndex];
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + products.length) % products.length);
+    setActiveIndex((prev) => (prev - 1 + categories.length) % categories.length);
   };
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % products.length);
+    setActiveIndex((prev) => (prev + 1) % categories.length);
+  };
+
+  const handleExplore = () => {
+    const shopSection = document.getElementById('shop');
+    if (shopSection) {
+      shopSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   // GSAP scroll-triggered entrance
@@ -181,13 +224,13 @@ const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
   }, []);
 
   return (
-    <section className="products" id="scents" ref={sectionRef}>
+    <section className="products" id="categories" ref={sectionRef}>
       <div className="products__inner container">
         <div className="products__header">
-          <span className="section-label">Our Scents</span>
-          <h2 className="section-title">Find Your Signature Fragrance</h2>
+          <span className="section-label">Explore Collection</span>
+          <h2 className="section-title">Our Categories</h2>
           <p className="products__subtitle">
-            Each candle is hand-poured with 100% natural soy wax and infused with premium essential oils.
+            Discover our diverse range of premium handcrafted candles and home fragrances.
           </p>
         </div>
 
@@ -195,7 +238,7 @@ const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
           <button 
             className="products__arrow products__arrow--prev" 
             onClick={handlePrev}
-            aria-label="Previous fragrance"
+            aria-label="Previous category"
           >
             <span>‹</span>
           </button>
@@ -206,37 +249,37 @@ const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
                 <div 
                   className="products__image-glow"
                   style={{
-                    background: `radial-gradient(circle, ${activeProduct.color}25 0%, transparent 70%)`
+                    background: `radial-gradient(circle, ${activeCategory.color}25 0%, transparent 70%)`
                   }}
                 ></div>
                 <img 
                   ref={imageRef}
-                  src={activeProduct.image} 
-                  alt={activeProduct.name} 
+                  src={activeCategory.image} 
+                  alt={activeCategory.name} 
                   className="products__slider-image"
                 />
               </div>
 
               <div className="products__info-side" ref={infoRef}>
-                <span className="products__category" style={{ color: activeProduct.color }}>
-                  {activeProduct.category}
+                <span className="products__category" style={{ color: activeCategory.color }}>
+                  {activeCategory.badge}
                 </span>
-                <h3 className="products__name">{activeProduct.name}</h3>
-                <p className="products__scent-notes">{activeProduct.scent}</p>
-                <p className="products__desc">{activeProduct.description}</p>
+                <h3 className="products__name">{activeCategory.name}</h3>
+                <p className="products__scent-notes">{activeCategory.tagline}</p>
+                <p className="products__desc">{activeCategory.description}</p>
                 
                 <div className="products__tags">
-                  {activeProduct.tags.map((tag, i) => (
+                  {activeCategory.tags.map((tag, i) => (
                     <span key={i} className="products__tag">{tag}</span>
                   ))}
                 </div>
 
                 <div className="products__buy-action">
-                  <span className="products__price">₹{activeProduct.price.toLocaleString('en-IN')}</span>
+                  <span className="products__price">{activeCategory.priceText}</span>
                   <ConfettiButton 
                     className="products__add-btn" 
-                    id={`add-to-cart-${activeProduct.id}`}
-                    onClick={() => onAddToCart(activeProduct)}
+                    id={`explore-category-${activeCategory.id}`}
+                    onClick={handleExplore}
                     confettiConfig={{
                       particleCount: 150,
                       spread: 80,
@@ -249,7 +292,7 @@ const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
                       ]
                     }}
                   >
-                    Add to Cart
+                    Explore Collection
                   </ConfettiButton>
                 </div>
               </div>
@@ -259,14 +302,14 @@ const ProductShowcase = ({ onAddToCart }: ProductShowcaseProps) => {
           <button 
             className="products__arrow products__arrow--next" 
             onClick={handleNext}
-            aria-label="Next fragrance"
+            aria-label="Next category"
           >
             <span>›</span>
           </button>
         </div>
 
         <div className="products__dots">
-          {products.map((_, index) => (
+          {categories.map((_, index) => (
             <button
               key={index}
               className={`products__dot ${index === activeIndex ? 'products__dot--active' : ''}`}
