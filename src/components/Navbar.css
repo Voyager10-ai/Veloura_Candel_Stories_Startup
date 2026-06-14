@@ -44,25 +44,16 @@
   justify-self: start;
 }
 
-.navbar__logo-flame {
-  font-size: var(--text-xl);
-  display: inline-block;
-  animation: flameFlicker 2s ease-in-out infinite;
+.navbar__logo-img {
+  height: 52px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  transition: height var(--transition-base);
 }
 
-@keyframes flameFlicker {
-  0%, 100% { transform: scaleY(1) rotate(0deg); filter: brightness(1); }
-  25% { transform: scaleY(1.05) rotate(-2deg); filter: brightness(1.1); }
-  50% { transform: scaleY(0.97) rotate(1deg); filter: brightness(0.95); }
-  75% { transform: scaleY(1.03) rotate(-1deg); filter: brightness(1.05); }
-}
-
-.navbar__logo-text {
-  font-family: var(--font-serif);
-  font-size: var(--text-2xl);
-  font-weight: 600;
-  color: var(--color-deep-bluish);
-  letter-spacing: 0.02em;
+.navbar--scrolled .navbar__logo-img {
+  height: 42px;
 }
 
 /* Nav Links */

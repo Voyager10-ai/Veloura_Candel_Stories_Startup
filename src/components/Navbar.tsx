@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import logoImg from '../assets/images/logo.png';
 import MagneticButton from './MagneticButton';
 import InteractiveHoverButton from './InteractiveHoverButton';
 import './Navbar.css';
@@ -85,8 +86,7 @@ const Navbar = ({ onCartClick, cartCount }: NavbarProps) => {
     >
       <div className="navbar__inner container">
         <a href="#home" className="navbar__logo" ref={logoRef}>
-          <span className="navbar__logo-flame">🕯️</span>
-          <span className="navbar__logo-text">Veloura</span>
+          <img src={logoImg} alt="Veloura Logo" className="navbar__logo-img" />
         </a>
 
         <nav

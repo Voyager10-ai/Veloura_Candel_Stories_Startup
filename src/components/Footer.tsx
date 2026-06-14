@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import logoImg from '../assets/images/logo.png';
 import './Footer.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -108,8 +109,7 @@ const Footer = () => {
         <div className="footer__bottom">
           <div className="footer__brand">
             <a href="#home" className="footer__logo">
-              <span className="footer__logo-icon">🕯️</span>
-              <span className="footer__logo-text">Veloura</span>
+              <img src={logoImg} alt="Veloura Logo" className="footer__logo-img" />
             </a>
           </div>
           
