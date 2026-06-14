@@ -187,7 +187,7 @@ const HeroSection = () => {
           </h1>
 
           <p className="hero__subtitle">
-            Using a blend of coconut and rapeseed wax, free from paraffin, soy, colourants or additional additives.
+              Hand-poured scented candles crafted with premium wax and fragrance oils.
           </p>
 
           <div className="hero__actions">
