@@ -158,7 +158,7 @@ const HeroSection = () => {
         <div className="hero__content" ref={contentRef}>
           <div className="hero__badge">
             <span className="hero__badge-dot"></span>
-            HANDCRAFTED LUXURY CANDLES
+            <span className="hero__badge-text">Handcrafted Luxury Candles</span>
           </div>
 
           <h1 className="hero__title">
