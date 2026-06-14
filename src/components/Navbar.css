@@ -45,7 +45,7 @@
 }
 
 .navbar__logo-img {
-  height: 52px;
+  height: 72px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -53,7 +53,7 @@
 }
 
 .navbar--scrolled .navbar__logo-img {
-  height: 42px;
+  height: 58px;
 }
 
 /* Nav Links */
