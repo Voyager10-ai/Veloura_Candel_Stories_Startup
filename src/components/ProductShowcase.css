@@ -164,7 +164,7 @@
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.45));
   border-radius: var(--radius-xl);
   will-change: transform, opacity;
-  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.6s ease;
+  transition: filter 0.6s ease;
 }
 
 .products__slider-card:hover .products__slider-image {

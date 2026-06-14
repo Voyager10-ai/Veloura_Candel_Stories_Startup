@@ -159,17 +159,25 @@ const ProductShowcase = (_props: ProductShowcaseProps) => {
 
   // GSAP slide transition when activeIndex changes
   useEffect(() => {
+    // Kill any running tweens on these elements immediately to prevent stacking
+    if (imageRef.current) {
+      gsap.killTweensOf(imageRef.current);
+    }
+    if (infoRef.current) {
+      gsap.killTweensOf(infoRef.current);
+    }
+
     const ctx = gsap.context(() => {
       if (imageRef.current) {
         gsap.fromTo(imageRef.current,
-          { opacity: 0, x: -60, scale: 0.85, rotate: -6 },
-          { opacity: 1, x: 0, scale: 1, rotate: 0, duration: 0.75, ease: 'power4.out' }
+          { opacity: 0, x: -30, scale: 0.92, rotate: -3 },
+          { opacity: 1, x: 0, scale: 1, rotate: 0, duration: 0.4, ease: 'power3.out', overwrite: true }
         );
       }
       if (infoRef.current) {
         gsap.fromTo(infoRef.current,
-          { opacity: 0, x: 45 },
-          { opacity: 1, x: 0, duration: 0.65, ease: 'power3.out', delay: 0.05 }
+          { opacity: 0, x: 25 },
+          { opacity: 1, x: 0, duration: 0.35, ease: 'power3.out', overwrite: true }
         );
       }
     }, sliderRef);
