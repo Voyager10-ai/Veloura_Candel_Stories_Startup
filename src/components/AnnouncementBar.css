@@ -1,7 +1,7 @@
 .announcement-bar {
-  height: 36px;
+  height: 44px;
   background-color: #121212; /* Deep Charcoal */
-  border-bottom: 1.5px solid rgba(201, 168, 106, 0.15); /* Elegant gold bottom border */
+  border-bottom: 2px solid rgba(201, 168, 106, 0.25); /* More prominent elegant gold bottom border */
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -30,9 +30,9 @@
 
 .announcement-bar__text {
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-deep-bluish); /* Warm Ivory */
   opacity: 0.95;
@@ -40,12 +40,12 @@
 
 .announcement-bar__text strong {
   color: var(--color-moderate-green); /* Gold Highlight */
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .announcement-bar__dot {
   color: var(--color-moderate-green); /* Gold Dot */
-  font-size: var(--text-base);
+  font-size: var(--text-lg);
   margin-left: var(--space-6);
   font-weight: 700;
 }
