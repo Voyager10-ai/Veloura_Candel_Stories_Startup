@@ -16,11 +16,29 @@ import CursorEffects from './components/CursorEffects';
 import ParticleBackground from './components/ParticleBackground';
 import CartDrawer from './components/CartDrawer';
 import type { CartItem } from './components/CartDrawer';
+import AuthModal from './components/AuthModal';
 
 function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('All');
+  
+  // Auth state with local storage persistence
+  const [user, setUser] = useState<{ name: string; email: string } | null>(() => {
+    const saved = localStorage.getItem('veloura_user');
+    return saved ? JSON.parse(saved) : null;
+  });
+  const [authModalOpen, setAuthModalOpen] = useState(false);
+
+  const handleLogin = (newUser: { name: string; email: string }) => {
+    setUser(newUser);
+    localStorage.setItem('veloura_user', JSON.stringify(newUser));
+  };
+
+  const handleLogout = () => {
+    setUser(null);
+    localStorage.removeItem('veloura_user');
+  };
 
   const handleAddToCart = (product: Product) => {
     setCart((prevCart) => {
@@ -65,7 +83,14 @@ function App() {
       <CursorEffects />
       <ParticleBackground />
       <AnnouncementBar />
-      <Navbar onCartClick={() => setCartOpen(true)} cartCount={cartCount} onCategoryFilter={setActiveCategoryFilter} />
+      <Navbar
+        user={user}
+        onLogout={handleLogout}
+        onSignInClick={() => setAuthModalOpen(true)}
+        onCartClick={() => setCartOpen(true)}
+        cartCount={cartCount}
+        onCategoryFilter={setActiveCategoryFilter}
+      />
       <main>
         <HeroSection />
         <ShopByCollection activeCategoryFilter={activeCategoryFilter} setActiveCategoryFilter={setActiveCategoryFilter} />
@@ -86,10 +111,13 @@ function App() {
         onRemoveItem={handleRemoveItem}
         onClearCart={handleClearCart}
       />
+      <AuthModal
+        isOpen={authModalOpen}
+        onClose={() => setAuthModalOpen(false)}
+        onLogin={handleLogin}
+      />
     </>
   );
 }
 
 export default App;
-
-// Trigger redeployment to clear modal changes

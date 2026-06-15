@@ -138,12 +138,15 @@ function searchProducts(query: string): SearchResult[] {
 
 /* ───── Navbar Props ───── */
 interface NavbarProps {
+  user: { name: string; email: string } | null;
+  onLogout: () => void;
+  onSignInClick: () => void;
   onCartClick: () => void;
   cartCount: number;
   onCategoryFilter?: (category: string) => void;
 }
 
-const Navbar = ({ onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
+const Navbar = ({ user, onLogout, onSignInClick, onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -155,6 +158,17 @@ const Navbar = ({ onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
   const ctaRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  
+  // Simulated Dialogs
+  const [activeDialog, setActiveDialog] = useState<'orders' | 'settings' | null>(null);
+  const [settingsSaved, setSettingsSaved] = useState(false);
+  const [prefScent, setPrefScent] = useState('French Lavender');
+  const [phone, setPhone] = useState('+91 98765 43210');
+
+  const handleSimulatedAction = (action: 'orders' | 'settings') => {
+    setActiveDialog(action);
+    setSettingsSaved(false);
+  };
 
   // Compute search results live
   const searchResults = useMemo(() => searchProducts(searchQuery), [searchQuery]);
@@ -360,14 +374,45 @@ const Navbar = ({ onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
               text="Shop Now"
             />
 
-            {/* Sign In link in mobile menu */}
-            <a href="#" className="navbar__signin navbar__signin--mobile" onClick={() => setMobileOpen(false)}>
-              <svg className="navbar__signin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              <span>Sign In</span>
-            </a>
+            {/* Sign In / User Profile in mobile menu */}
+            {!user ? (
+              <button
+                className="navbar__signin navbar__signin--mobile"
+                onClick={() => {
+                  setMobileOpen(false);
+                  onSignInClick();
+                }}
+              >
+                <svg className="navbar__signin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span>Sign In</span>
+              </button>
+            ) : (
+              <div className="navbar__user-mobile">
+                <div className="navbar__user-mobile-header">
+                  <div className="navbar__user-avatar">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <div className="navbar__user-mobile-info">
+                    <span className="navbar__user-mobile-name">{user.name}</span>
+                    <span className="navbar__user-mobile-email">{user.email}</span>
+                  </div>
+                </div>
+                <div className="navbar__user-mobile-links">
+                  <button className="navbar__user-mobile-link" onClick={() => { setMobileOpen(false); handleSimulatedAction('orders'); }}>
+                    🛍️ My Orders
+                  </button>
+                  <button className="navbar__user-mobile-link" onClick={() => { setMobileOpen(false); handleSimulatedAction('settings'); }}>
+                    ⚙️ Settings
+                  </button>
+                  <button className="navbar__user-mobile-link navbar__user-mobile-link--logout" onClick={() => { setMobileOpen(false); onLogout(); }}>
+                    🚪 Log Out
+                  </button>
+                </div>
+              </div>
+            )}
           </nav>
 
           <div ref={ctaRef} className="navbar__right-actions">
@@ -384,14 +429,42 @@ const Navbar = ({ onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
               </svg>
             </button>
 
-            {/* Sign In Button */}
-            <a href="#" className="navbar__signin navbar__signin--desktop">
-              <svg className="navbar__signin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                <circle cx="12" cy="7" r="4"/>
-              </svg>
-              <span className="navbar__signin-text">Sign In</span>
-            </a>
+            {/* Sign In Button / User Menu */}
+            {!user ? (
+              <button className="navbar__signin navbar__signin--desktop" onClick={onSignInClick}>
+                <svg className="navbar__signin-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                  <circle cx="12" cy="7" r="4"/>
+                </svg>
+                <span className="navbar__signin-text">Sign In</span>
+              </button>
+            ) : (
+              <div className="navbar__user-menu">
+                <button className="navbar__user-btn">
+                  <div className="navbar__user-avatar">
+                    {user.name.charAt(0).toUpperCase()}
+                  </div>
+                  <span className="navbar__user-name">{user.name}</span>
+                </button>
+                <div className="navbar__user-dropdown">
+                  <div className="navbar__dropdown-header">
+                    <span className="navbar__dropdown-title">{user.name}</span>
+                    <span className="navbar__dropdown-subtitle">{user.email}</span>
+                  </div>
+                  <div className="navbar__dropdown-divider" />
+                  <button className="navbar__dropdown-item" onClick={() => handleSimulatedAction('orders')}>
+                    🛍️ My Orders
+                  </button>
+                  <button className="navbar__dropdown-item" onClick={() => handleSimulatedAction('settings')}>
+                    ⚙️ Settings
+                  </button>
+                  <div className="navbar__dropdown-divider" />
+                  <button className="navbar__dropdown-item navbar__dropdown-item--logout" onClick={onLogout}>
+                    🚪 Log Out
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* Cart Button */}
             <button className="navbar__cart-btn navbar__cart-btn--desktop" onClick={onCartClick} aria-label="Open cart">
@@ -514,6 +587,88 @@ const Navbar = ({ onCartClick, cartCount, onCategoryFilter }: NavbarProps) => {
           </p>
         </div>
       </div>
+      {/* Simulated Orders Dialog */}
+      {activeDialog === 'orders' && (
+        <div className="simulated-dialog">
+          <div className="simulated-dialog__backdrop" onClick={() => setActiveDialog(null)} />
+          <div className="simulated-dialog__content">
+            <button className="simulated-dialog__close" onClick={() => setActiveDialog(null)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            <h3 className="simulated-dialog__title">🛍️ Order History</h3>
+            <div className="simulated-dialog__divider" />
+            <div className="simulated-dialog__body">
+              <div className="order-card">
+                <div className="order-card__header">
+                  <span className="order-card__id">Order #VL-8493</span>
+                  <span className="order-card__status status--delivered">Delivered</span>
+                </div>
+                <div className="order-card__product">French Lavender Scented Candle · 240g</div>
+                <div className="order-card__meta">Ordered on Jun 12, 2026 · ₹899.00</div>
+              </div>
+              
+              <div className="order-card">
+                <div className="order-card__header">
+                  <span className="order-card__id">Order #VL-8312</span>
+                  <span className="order-card__status status--delivered">Delivered</span>
+                </div>
+                <div className="order-card__product">Royal Amber & Oud Soy Candle · 240g</div>
+                <div className="order-card__meta">Ordered on Jun 05, 2026 · ₹1,299.00</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Simulated Settings Dialog */}
+      {activeDialog === 'settings' && (
+        <div className="simulated-dialog">
+          <div className="simulated-dialog__backdrop" onClick={() => setActiveDialog(null)} />
+          <div className="simulated-dialog__content">
+            <button className="simulated-dialog__close" onClick={() => setActiveDialog(null)}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+              </svg>
+            </button>
+            <h3 className="simulated-dialog__title">⚙️ Account Settings</h3>
+            <div className="simulated-dialog__divider" />
+            <div className="simulated-dialog__body">
+              {settingsSaved && (
+                <div className="settings-saved-toast">
+                  ✓ Profile settings saved successfully!
+                </div>
+              )}
+              <form onSubmit={(e) => { e.preventDefault(); setSettingsSaved(true); setTimeout(() => setSettingsSaved(false), 3000); }}>
+                <div className="settings-field">
+                  <label className="settings-label-text">Full Name</label>
+                  <input type="text" className="settings-input" defaultValue={user?.name || ''} readOnly />
+                  <span className="settings-hint">Contact support to change display name.</span>
+                </div>
+                <div className="settings-field">
+                  <label className="settings-label-text">Email Address</label>
+                  <input type="email" className="settings-input" defaultValue={user?.email || ''} readOnly />
+                </div>
+                <div className="settings-field">
+                  <label className="settings-label-text">Phone Number</label>
+                  <input type="text" className="settings-input" value={phone} onChange={(e) => setPhone(e.target.value)} />
+                </div>
+                <div className="settings-field">
+                  <label className="settings-label-text">Preferred Scent Profile</label>
+                  <select className="settings-select" value={prefScent} onChange={(e) => setPrefScent(e.target.value)}>
+                    <option>French Lavender</option>
+                    <option>Royal Amber & Oud</option>
+                    <option>Sandalwood & Musk</option>
+                    <option>Jasmine Blossom</option>
+                  </select>
+                </div>
+                <button type="submit" className="settings-save-btn">Save Preferences</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 };
