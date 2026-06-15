@@ -9,6 +9,8 @@ import catDecorative from '../assets/images/cat-decorative.png';
 import catDessert from '../assets/images/cat-dessert.png';
 import catWaxMelts from '../assets/images/cat-waxmelts.png';
 import catColour from '../assets/images/cat-colour.png';
+import curing from '../assets/images/curing.png';
+import pouring from '../assets/images/pouring.png';
 
 interface CollectionItem {
   id: string;
@@ -21,50 +23,64 @@ interface CollectionItem {
 const collections: CollectionItem[] = [
   {
     id: 'All',
-    name: 'All',
-    label: 'All Collection',
+    name: 'All Products',
+    label: 'All Products',
     image: logoImg,
     color: 'linear-gradient(45deg, #C9A86A, #E8D3A9, #D98E32)',
   },
   {
     id: 'Premium Candles',
-    name: 'Premium',
-    label: 'Premium',
+    name: 'Premium Candles',
+    label: 'Premium Candles',
     image: catPremium,
     color: 'linear-gradient(45deg, #D98E32, #f39c12)',
   },
   {
     id: 'Taper Candles',
-    name: 'Taper',
-    label: 'Taper',
+    name: 'Taper Candles',
+    label: 'Taper Candles',
     image: catTaper,
     color: 'linear-gradient(45deg, #C9A86A, #95a5a6)',
   },
   {
     id: 'Decorative Candles',
-    name: 'Decorative',
-    label: 'Decorative',
+    name: 'Decorative Candles',
+    label: 'Decorative Candles',
     image: catDecorative,
     color: 'linear-gradient(45deg, #E8D3A9, #e74c3c)',
   },
   {
     id: 'Dessert Candles',
-    name: 'Dessert',
-    label: 'Dessert',
+    name: 'Dessert Candles',
+    label: 'Dessert Candles',
     image: catDessert,
     color: 'linear-gradient(45deg, #D98E32, #e67e22)',
   },
   {
-    id: 'Wax Melts & Sachets',
-    name: 'Wax Melts',
-    label: 'Wax Melts',
+    id: 'Combos',
+    name: 'Combos',
+    label: 'Combos',
     image: catWaxMelts,
     color: 'linear-gradient(45deg, #C9A86A, #2ecc71)',
   },
   {
+    id: 'Gift Box',
+    name: 'Gift Box',
+    label: 'Gift Box',
+    image: curing,
+    color: 'linear-gradient(45deg, #E8D3A9, #9b59b6)',
+  },
+  {
+    id: 'Customize Candles',
+    name: 'Customize Candles',
+    label: 'Customize Candles',
+    image: pouring,
+    color: 'linear-gradient(45deg, #D98E32, #1abc9c)',
+  },
+  {
     id: 'Colour Candles',
-    name: 'Coloured',
-    label: 'Coloured',
+    name: 'Colour Candles',
+    label: 'Colour Candles',
     image: catColour,
     color: 'linear-gradient(45deg, #E8D3A9, #3498db)',
   },

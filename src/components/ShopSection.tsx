@@ -8,7 +8,6 @@ import candleAmber from '../assets/images/candle-amber.png';
 import candleSage from '../assets/images/candle-sage.png';
 import candleRose from '../assets/images/candle-rose.png';
 import candleJasmine from '../assets/images/candle-jasmine.png';
-import candleVanilla from '../assets/images/candle-vanilla.png';
 import candleCedar from '../assets/images/candle-cedar.png';
 import saffron from '../assets/images/saffron.png';
 import lavender from '../assets/images/lavender.png';
@@ -17,11 +16,13 @@ import catTaper from '../assets/images/cat-taper.png';
 import catDecorative from '../assets/images/cat-decorative.png';
 import catDessert from '../assets/images/cat-dessert.png';
 import catColour from '../assets/images/cat-colour.png';
+import catWaxMelts from '../assets/images/cat-waxmelts.png';
 import blending from '../assets/images/blending.png';
 import pouring from '../assets/images/pouring.png';
 import curing from '../assets/images/curing.png';
 import sourcing from '../assets/images/sourcing.png';
 import heroCandle from '../assets/images/hero-candle.png';
+import logo from '../assets/images/logo.png';
 
 import './ShopSection.css';
 
@@ -180,44 +181,114 @@ export const shopProducts: Product[] = [
     tags: ['Decadent Cocoa', 'Sundae Mold', 'Sweet Delights'],
   },
 
-  // Category 5: Wax Melts & Sachets
+  // Category 5: Combos
   {
-    id: 5,
-    name: 'Vanilla Noir',
-    category: 'Wax Melts & Sachets',
-    scent: 'Dark Vanilla · Amber · Tonka Bean',
-    description: 'A rich, seductive take on vanilla, layered with deep balsamic woods.',
-    price: 1199,
-    image: candleVanilla,
-    color: '#A1887F',
-    tags: ['Rich Aroma', 'Cosy Blend', 'Sensual'],
+    id: 501,
+    name: 'Veloura Signature Duo',
+    category: 'Combos',
+    scent: 'Sandalwood & French Lavender',
+    description: 'A curated pairing of our signature soy jar candle and a matching set of botanical wax melts.',
+    price: 1499,
+    image: catWaxMelts,
+    color: '#C9A86A',
+    tags: ['Duo Set', 'Gift-Ready', 'Best Value'],
   },
   {
     id: 502,
-    name: 'Lavender Botanical Sachet',
-    category: 'Wax Melts & Sachets',
-    scent: 'French Lavender · Rosemary',
-    description: 'A beautiful botanical soy wax sachet decorated with lavender buds to freshen up closets.',
-    price: 199,
-    image: lavender,
+    name: 'Harmony Taper Trio',
+    category: 'Combos',
+    scent: 'Soft Sage & Lavender',
+    description: 'Three matching hand-poured taper candles in complementary organic tones, complete with a ceramic tray.',
+    price: 799,
+    image: candleSage,
     color: '#C9A86A',
-    tags: ['Botanical Decor', 'Closet Freshener', 'Aromatherapy'],
+    tags: ['Set of 3', 'Home Styling', 'Ceramic Tray'],
   },
   {
     id: 503,
-    name: 'Lemongrass Healing Melts',
-    category: 'Wax Melts & Sachets',
-    scent: 'Lemongrass · Eucalyptus',
-    description: 'Refreshing and insect-repelling melts, ideal for focus and clean air vibes.',
-    price: 199,
-    image: lemongrass,
+    name: 'Floral Scent & Sachet Pack',
+    category: 'Combos',
+    scent: 'Peony, Amber & French Lavender',
+    description: 'A comforting floral gift pack containing a Rose & Blush candle and a Lavender botanical sachet.',
+    price: 899,
+    image: lavender,
     color: '#C9A86A',
-    tags: ['Focus & Cleanse', 'Lemongrass Oils', 'Soothing'],
+    tags: ['Mini Packs', 'Sweet Aromas', 'Botanical Decor'],
   },
 
-  // Category 6: Colour Candles
+  // Category 6: Gift Box
   {
-    id: 6,
+    id: 601,
+    name: 'Golden Opulence Gift Box',
+    category: 'Gift Box',
+    scent: 'Sandalwood · Vanilla · Saffron',
+    description: 'Our flagship gold-foiled gift box containing a signature candle, brass snuffer, and a jar of safety matches.',
+    price: 1899,
+    image: sourcing,
+    color: '#E8D3A9',
+    tags: ['Luxury Gift', 'Corporate Gift', 'Custom Card'],
+  },
+  {
+    id: 602,
+    name: 'Calm & Ground Self-Care Box',
+    category: 'Gift Box',
+    scent: 'Sage · Lavender · Lemongrass',
+    description: 'A soothing gift set containing Sage & Sea tapers, lemongrass melts, and an organic cotton ritual towel.',
+    price: 999,
+    image: lemongrass,
+    color: '#E8D3A9',
+    tags: ['Wellness Gift', 'Self-Care', 'Organic Cotton'],
+  },
+  {
+    id: 603,
+    name: 'Sculptural Art Gift Set',
+    category: 'Gift Box',
+    scent: 'Cotton Candy · Sandalwood · Musk',
+    description: 'A luxury gift box featuring our pastel bubble cube and marble-finish Venus bust candles.',
+    price: 1199,
+    image: catDecorative,
+    color: '#E8D3A9',
+    tags: ['Home Decor', 'Curated Set', 'Aesthetic Shapes'],
+  },
+
+  // Category 7: Customize Candles
+  {
+    id: 701,
+    name: 'Custom Scent Builder',
+    category: 'Customize Candles',
+    scent: 'Tailored Scent Profile',
+    description: 'Design your own signature candle! Select your wax color, choice of fragrance oils, and upload a custom label message.',
+    price: 1599,
+    image: pouring,
+    color: '#D98E32',
+    tags: ['Custom Blend', 'Personalized Label', 'Your Design'],
+  },
+  {
+    id: 702,
+    name: 'Monogram Classic Jar',
+    category: 'Customize Candles',
+    scent: 'Classic Sandalwood · Amber',
+    description: 'Our classic amber jar candle personalized with a high-shine gold-foil monogram letter of your choice.',
+    price: 1399,
+    image: candleAmber,
+    color: '#D98E32',
+    tags: ['Monogram', 'Gift-Ready', 'Gold Foil Label'],
+  },
+  {
+    id: 703,
+    name: 'Bespoke Corporate Set',
+    category: 'Customize Candles',
+    scent: 'Veloura Custom Corporate Blend',
+    description: 'Custom branded candles with your corporate logo and tailored scents. Perfect for client gifting and event favors.',
+    price: 899,
+    image: logo,
+    color: '#D98E32',
+    tags: ['Bulk Order', 'Logo Print', 'Wedding Favours'],
+  },
+
+  // Category 8: Colour Candles
+  {
+    id: 801,
     name: 'Cedarwood Forest',
     category: 'Colour Candles',
     scent: 'Cedar · Cypress · Pine Needle',
@@ -228,7 +299,7 @@ export const shopProducts: Product[] = [
     tags: ['Woodland', 'Deep Peace', 'Cleansing'],
   },
   {
-    id: 602,
+    id: 802,
     name: 'Crimson Red Pillar Set',
     category: 'Colour Candles',
     scent: 'Spiced Apple · Cinnamon',
@@ -239,7 +310,7 @@ export const shopProducts: Product[] = [
     tags: ['Solid Color Pillar', 'Spiced Apple', 'Holiday Vibe'],
   },
   {
-    id: 603,
+    id: 803,
     name: 'Ocean Blue Tealights Pack',
     category: 'Colour Candles',
     scent: 'Sea Breeze · Jasmine',
