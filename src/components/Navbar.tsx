@@ -608,22 +608,10 @@ const Navbar = ({ user, onLogout, onSignInClick, onCartClick, cartCount, onCateg
             <h3 className="simulated-dialog__title">🛍️ Order History</h3>
             <div className="simulated-dialog__divider" />
             <div className="simulated-dialog__body">
-              <div className="order-card">
-                <div className="order-card__header">
-                  <span className="order-card__id">Order #VL-8493</span>
-                  <span className="order-card__status status--delivered">Delivered</span>
-                </div>
-                <div className="order-card__product">French Lavender Scented Candle · 240g</div>
-                <div className="order-card__meta">Ordered on Jun 12, 2026 · ₹899.00</div>
-              </div>
-              
-              <div className="order-card">
-                <div className="order-card__header">
-                  <span className="order-card__id">Order #VL-8312</span>
-                  <span className="order-card__status status--delivered">Delivered</span>
-                </div>
-                <div className="order-card__product">Royal Amber & Oud Soy Candle · 240g</div>
-                <div className="order-card__meta">Ordered on Jun 05, 2026 · ₹1,299.00</div>
+              <div className="no-orders-box">
+                <span className="no-orders-emoji">📦</span>
+                <p className="no-orders-text">No orders yet</p>
+                <p className="no-orders-subtext">Your purchase history will appear here once you place an order.</p>
               </div>
             </div>
           </div>
