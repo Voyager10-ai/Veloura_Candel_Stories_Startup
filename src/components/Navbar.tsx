@@ -173,6 +173,14 @@ const Navbar = ({ user, onLogout, onSignInClick, onCartClick, cartCount, onCateg
   // Compute search results live
   const searchResults = useMemo(() => searchProducts(searchQuery), [searchQuery]);
 
+  const cleanDisplayName = useMemo(() => {
+    if (!user) return '';
+    const firstPart = user.name.split(' ')[0];
+    const withoutNumbers = firstPart.replace(/\d+$/, '');
+    const capitalized = withoutNumbers.charAt(0).toUpperCase() + withoutNumbers.slice(1);
+    return capitalized.length > 10 ? capitalized.substring(0, 8) + '..' : capitalized;
+  }, [user]);
+
   // Entrance animation
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -444,7 +452,7 @@ const Navbar = ({ user, onLogout, onSignInClick, onCartClick, cartCount, onCateg
                   <div className="navbar__user-avatar">
                     {user.name.charAt(0).toUpperCase()}
                   </div>
-                  <span className="navbar__user-name">{user.name}</span>
+                  <span className="navbar__user-name">{cleanDisplayName}</span>
                 </button>
                 <div className="navbar__user-dropdown">
                   <div className="navbar__dropdown-header">
