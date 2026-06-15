@@ -2,7 +2,6 @@ import { useState } from 'react';
 import Navbar from './components/Navbar';
 import AnnouncementBar from './components/AnnouncementBar';
 import HeroSection from './components/HeroSection';
-import ProductShowcase from './components/ProductShowcase';
 import ShopByCollection from './components/ShopByCollection';
 import ShopSection from './components/ShopSection';
 import type { Product } from './components/ShopSection';
@@ -69,7 +68,6 @@ function App() {
       <Navbar onCartClick={() => setCartOpen(true)} cartCount={cartCount} />
       <main>
         <HeroSection />
-        <ProductShowcase setActiveCategoryFilter={setActiveCategoryFilter} />
         <ShopByCollection activeCategoryFilter={activeCategoryFilter} setActiveCategoryFilter={setActiveCategoryFilter} />
         <ShopSection onAddToCart={handleAddToCart} activeCategoryFilter={activeCategoryFilter} />
         <BenefitsSection />
