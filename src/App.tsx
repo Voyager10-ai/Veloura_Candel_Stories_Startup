@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import AnnouncementBar from './components/AnnouncementBar';
 import HeroSection from './components/HeroSection';
 import ProductShowcase from './components/ProductShowcase';
+import ShopByCollection from './components/ShopByCollection';
 import ShopSection from './components/ShopSection';
 import type { Product } from './components/ShopSection';
 import BenefitsSection from './components/BenefitsSection';
@@ -20,6 +21,7 @@ import type { CartItem } from './components/CartDrawer';
 function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [activeCategoryFilter, setActiveCategoryFilter] = useState<string>('All');
 
   const handleAddToCart = (product: Product) => {
     setCart((prevCart) => {
@@ -67,8 +69,9 @@ function App() {
       <Navbar onCartClick={() => setCartOpen(true)} cartCount={cartCount} />
       <main>
         <HeroSection />
-        <ProductShowcase onAddToCart={handleAddToCart} />
-        <ShopSection onAddToCart={handleAddToCart} />
+        <ProductShowcase setActiveCategoryFilter={setActiveCategoryFilter} />
+        <ShopByCollection activeCategoryFilter={activeCategoryFilter} setActiveCategoryFilter={setActiveCategoryFilter} />
+        <ShopSection onAddToCart={handleAddToCart} activeCategoryFilter={activeCategoryFilter} />
         <BenefitsSection />
         <ActivationsSection />
         <TrustSection />

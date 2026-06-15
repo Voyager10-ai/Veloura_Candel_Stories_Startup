@@ -94,10 +94,10 @@ export const categories: CategoryItem[] = [
 ];
 
 interface ProductShowcaseProps {
-  onAddToCart?: (product: any) => void;
+  setActiveCategoryFilter?: (category: string) => void;
 }
 
-const ProductShowcase = (_props: ProductShowcaseProps) => {
+const ProductShowcase = ({ setActiveCategoryFilter }: ProductShowcaseProps) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -115,6 +115,9 @@ const ProductShowcase = (_props: ProductShowcaseProps) => {
   };
 
   const handleExplore = () => {
+    if (setActiveCategoryFilter) {
+      setActiveCategoryFilter(activeCategory.name);
+    }
     const shopSection = document.getElementById('shop');
     if (shopSection) {
       shopSection.scrollIntoView({ behavior: 'smooth' });
