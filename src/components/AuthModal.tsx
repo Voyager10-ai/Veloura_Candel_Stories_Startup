@@ -129,7 +129,7 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
     }
   };
 
-  const triggerSendOtp = () => {
+  const triggerSendOtp = async () => {
     if (!email) {
       setError('Please enter your email.');
       return;
@@ -137,17 +137,49 @@ const AuthModal = ({ isOpen, onClose, onLogin }: AuthModalProps) => {
     setError('');
     setLoading(true);
 
-    setTimeout(() => {
-      setLoading(false);
-      // Generate a random 6-digit OTP code
-      const code = Math.floor(100000 + Math.random() * 900000).toString();
-      setGeneratedOtp(code);
+    // Generate a random 6-digit OTP code
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    setGeneratedOtp(code);
+
+    try {
+      const response = await fetch('/api/send-otp', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, otp: code }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send OTP email.');
+      }
+
       setTimer(60);
       setActiveTab('otp-verify');
       setShowNotification(true);
-      // Auto-hide the mock email notification alert after 10s
       setTimeout(() => setShowNotification(false), 12000);
-    }, 1200);
+    } catch (err: any) {
+      console.error('OTP send error:', err);
+      
+      if (err.message && err.message.includes('RESEND_API_KEY')) {
+        setError('API Key not set on Vercel yet. Showing simulated backup code at the top.');
+      } else {
+        setError(err.message || 'Failed to send verification code. Using offline backup.');
+      }
+      
+      // Fallback: Always allow testing offline, even if Resend is not set up!
+      setTimeout(() => {
+        setError('');
+        setTimer(60);
+        setActiveTab('otp-verify');
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 12000);
+      }, 2000);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleVerifyOtp = (e: React.FormEvent) => {
