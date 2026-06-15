@@ -1,6 +1,6 @@
 .collections-nav {
   padding: var(--space-12) 0;
-  background-color: var(--color-bg);
+  background-color: var(--color-light-cream);
   position: relative;
   overflow: hidden;
   user-select: none;
@@ -14,7 +14,7 @@
   font-weight: 500;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--color-gold);
+  color: #C9A86A;
   margin-bottom: var(--space-8);
   opacity: 0.95;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -44,7 +44,7 @@
 .collections-nav__list {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   gap: var(--space-8);
   padding: 0 var(--space-4);
   min-width: max-content;
@@ -105,7 +105,7 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background-color: var(--color-bg);
+  background-color: #1a1a1a;
   padding: 3px; /* Inner spacing before image */
   display: flex;
   justify-content: center;
@@ -131,28 +131,28 @@
 .collections-nav__label {
   margin-top: var(--space-3);
   font-family: var(--font-sans);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 600;
-  letter-spacing: 0.08em;
-  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+  color: #d4c9b5;
   text-transform: uppercase;
   text-align: center;
   transition: color 0.3s ease, font-weight 0.3s ease;
   width: 100%;
   white-space: normal;
   line-height: 1.4;
-  height: 2.8em;
+  min-height: 2.8em;
   display: flex;
   align-items: flex-start;
   justify-content: center;
 }
 
 .collections-nav__item:hover .collections-nav__label {
-  color: var(--color-text);
+  color: #F8F4EE;
 }
 
 .collections-nav__item--active .collections-nav__label {
-  color: var(--color-gold);
+  color: #C9A86A;
   font-weight: 700;
 }
 
@@ -180,7 +180,7 @@
 
 .collections-nav__arrow:hover {
   background: #ffffff;
-  color: var(--color-gold);
+  color: #C9A86A;
   box-shadow: 0 8px 24px rgba(201, 168, 106, 0.4);
   transform: translateY(-50%) scale(1.08);
 }
@@ -197,7 +197,7 @@
 .collections-nav__item[onClick*="All"] .collections-nav__image {
   object-fit: contain;
   padding: 6px;
-  background-color: var(--color-bg);
+  background-color: #121212;
 }
 
 /* Responsive adjustments */
@@ -226,9 +226,9 @@
   }
   
   .collections-nav__label {
-    font-size: 9.5px;
+    font-size: 10px;
     margin-top: var(--space-2);
-    height: 2.8em;
+    min-height: 2.8em;
   }
 
   .collections-nav__arrow {
